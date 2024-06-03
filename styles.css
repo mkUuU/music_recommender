@@ -10,98 +10,37 @@ header {
     padding: 20px;
     position: relative;
 }
-
-.cover-image img {
-    width: 100%;
-    height: auto;
-    max-height: 400px;
-    object-fit: cover;
-}
-
 h1 {
     margin: 20px 0 10px;
     font-size: 2.5em;
     color: #333;
 }
-
-.description {
-    font-size: 1.2em;
-    color: #666;
+h2 {
+    font-size: 2em;
+    color: #333;
+}
+form {
+    margin-bottom: 20px;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    margin: 10px 0;
+    width: calc(100% - 22px);
+    font-size: 1em;
 }
 
-nav ul li {
-    margin: 0 10px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #007BFF;
-    font-size: 1.1em;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-.deploy-button {
-    background-color: #28a745;
+button {
+    background-color: #007BFF;
     color: white;
     border: none;
     padding: 10px 20px;
     font-size: 1em;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: 20px;
 }
 
-.deploy-button:hover {
-    background-color: #218838;
+button:hover {
+    background-color: #0056b3;
 }
-
-main {
-    padding: 20px;
-}
-
-section {
-    margin: 40px 0;
-}
-
-h2 {
-    font-size: 2em;
-    color: #333;
-}
-
-h3 {
-    font-size: 1.5em;
-    color: #333;
-}
-
-p {
-    font-size: 1.1em;
-    color: #666;
-}
-
-ul {
-    padding-left: 20px;
-}
-
-ul li {
-    margin-bottom: 10px;
-}
-
-ul li ul {
-    margin-top: 5px;
-}
-
-ul li ul li {
-    margin-bottom: 5px;
-}
-
