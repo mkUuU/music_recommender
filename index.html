@@ -1,44 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Recommender</title>
-    <script>
-        async function fetchSongs() {
-            const response = await fetch('/songs');
-            const songs = await response.json();
-            const songList = document.getElementById('songList');
-            songList.innerHTML = '';
-
-            songs.forEach(song => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${song.song_name} by ${song.artist_name}`;
-                songList.appendChild(listItem);
-            });
-        }
-
-        async function fetchSongById() {
-            const songId = document.getElementById('songId').value;
-            const response = await fetch(`/songs/${songId}`);
-            const song = await response.json();
-            const songDetail = document.getElementById('songDetail');
-            songDetail.innerHTML = '';
-
-            if (song.error) {
-                songDetail.textContent = song.error;
-            } else {
-                songDetail.textContent = `${song.song_name} by ${song.artist_name}`;
-            }
-        }
-    </script>
 </head>
 <body>
-    <h1>Music Recommender</h1>
-    <button onclick="fetchSongs()">Get All Songs</button>
-    <ul id="songList"></ul>
+    <h1>Music Recommender System</h1>
+    <div>
+        <h2>Add User</h2>
+        <form id="userForm">
+            <input type="text" id="name" placeholder="Name" required><br>
+            <input type="text" id="favorite_genres" placeholder="Favorite Genres (comma separated)" required><br>
+            <input type="text" id="favorite_artists" placeholder="Favorite Artists (comma separated)" required><br>
+            <input type="text" id="preferred_moods" placeholder="Preferred Moods (comma separated)" required><br>
+            <button type="submit">Add User</button>
+        </form>
+    </div>
+    <div>
+        <h2>Get Recommendations</h2>
+        <input type="number" id="user_id" placeholder="User ID"><br>
+        <button onclick="getRecommendations()">Get Recommendations</button>
+        <ul id="recommendations"></ul>
+    </div>
 
-    <h2>Get Song by ID</h2>
-    <input type="number" id="songId" placeholder="Enter song ID">
-    <button onclick="fetchSongById()">Get Song</button>
-    <p id="songDetail"></p>
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const favorite_genres = document.getElementById('favorite_genres').value.split(',');
+            const favorite_artists = document.getElementById('favorite_artists').value.split(',');
+            const preferred_moods = document.getElementById('preferred_moods').value.split(',');
+            
+            fetch('/add_user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, favorite_genres, favorite_artists, preferred_moods })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        function getRecommendations() {
+            const user_id = document.getElementById('user_id').value;
+            fetch(`/recommendations?user_id=${user_id}`)
+            .then(response => response.json())
+            .then(data => {
+                const recommendationsList = document.getElementById('recommendations');
+                recommendationsList.innerHTML = '';
+                data.forEach(song => {
+                    const li = document.createElement('li');
+                    li.textContent = `${song.title} by ${song.artist}`;
+                    recommendationsList.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>
