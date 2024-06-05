@@ -26,21 +26,26 @@
     </div>
 
     <script>
-        document.getElementById('userForm').addEventListener('submit', function(event) {
+	    document.getElementById('userForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const name = document.getElementById('name').value;
             const favorite_genres = document.getElementById('favorite_genres').value.split(',');
             const favorite_artists = document.getElementById('favorite_artists').value.split(',');
             const preferred_moods = document.getElementById('preferred_moods').value.split(',');
             
-            fetch('/add_user', {
+            fetch('https://musicrecommender.vercel.app/api/add_user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ name, favorite_genres, favorite_artists, preferred_moods })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 alert(data.message);
             })
@@ -51,8 +56,13 @@
 
         function getRecommendations() {
             const user_id = document.getElementById('user_id').value;
-            fetch(`/recommendations?user_id=${user_id}`)
-            .then(response => response.json())
+            fetch(`https://musicrecommender.vercel.app/api/recommendations?user_id=${user_id}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 const recommendationsList = document.getElementById('recommendations');
                 recommendationsList.innerHTML = '';
