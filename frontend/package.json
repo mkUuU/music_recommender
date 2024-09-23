@@ -1,62 +1,23 @@
-
-
-
-
-
-
-
-
-
-
-
-
-{
-  "name": "frontend",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.21.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "tailwindcss": "^Here’s the remainder of your **React project** setup with the dependencies mentioned.
-
-### 1. **Complete `package.json` Example**:
-This `package.json` file includes React, React Router, and Axios for frontend requests. It also adds **TailwindCSS** for styling.
-
-```json
-{
-  "name": "music-recommendation-app",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.21.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^5.2.0"
-  },
-  "devDependencies": {
-    "tailwindcss": "^2.2.19",
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.5"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  {
+    "name": "frontend",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+      "axios": "^0.21.1",
+      "react": "^17.0.1",
+      "react-dom": "^17.0.1",
+      "react-router-dom": "^5.2.0"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "devDependencies": {
+      "tailwindcss": "^2.2.19",
+      "autoprefixer": "^10.4.0",
+      "postcss": "^8.4.5"
+    }
   }
-}
 
